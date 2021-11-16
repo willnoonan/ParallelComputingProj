@@ -1,7 +1,7 @@
 import numpy as np
 
 def simple_boxblur(img_data):
-    # Radius = 1
+    """Box blur algorithm with radius = 1."""
     img_data = np.array(img_data, dtype=int)
     img_shape = img_data.shape
     h, w = img_shape

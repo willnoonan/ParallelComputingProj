@@ -4,13 +4,13 @@ import concurrent.futures
 import os
 import numpy as np
 
-def blurimageby(method):
+def blurimageby(method, **kwargs):
     image_path = r"images"
     img = Image.open(os.path.join(image_path, "pinkflower.jpg"))
     r_band, g_band, b_band = img.split()
     bands = {"red": r_band, "green": g_band, "blue": b_band}
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        futures = {band_name: executor.submit(method, band) for band_name, band in bands.items()}
+        futures = {band_name: executor.submit(method, band, **kwargs) for band_name, band in bands.items()}
         for _ in concurrent.futures.as_completed(futures.values()):
             pass
     new_img_data = list(zip(futures["red"].result(),

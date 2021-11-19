@@ -73,3 +73,41 @@ def simple_boxblur_V2(img_data):
             avg = round(sum / box_size)
             new_img_data.append(avg)
     return new_img_data
+
+def boxblur(img_data, radius=1):
+    """
+    Second version of box blur algorithm with radius = 1.
+    Meant to be a stepping stone to a method with variable radius.
+    """
+    if radius < 0:
+        raise ValueError("radius must be >= 0")
+
+    box_size = (2 * radius + 1) ** 2
+    img_data = np.array(img_data, dtype=int)
+    img_shape = img_data.shape
+    h, w = img_shape
+    new_img_data = []
+    for row in range(0, h):
+        for col in range(0, w):
+            # Determine indices for box's top left corner (prefix a) and bottom right corner (prefix b)
+            ai = row - radius  # row index of box top left corner
+            aj = col - radius  # col index of box top left corner
+            bi = row + radius  # row index of box bottom right corner
+            bj = col + radius  # col index of box bottom right corner
+            sum = 0
+            for br in range(ai, bi + 1):
+                for bc in range(aj, bj + 1):
+                    i = br  # copy box row loop var into new var
+                    j = bc  # copy box col loop var into new var
+                    if i < 0:
+                        i = 0
+                    if i > h - 1:
+                        i = h - 1
+                    if j < 0:
+                        j = 0
+                    if j > w - 1:
+                        j = w - 1
+                    sum += img_data[i][j]  # use i and j values to get the matrix value
+            avg = round(sum / box_size)
+            new_img_data.append(avg)
+    return new_img_data

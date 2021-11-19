@@ -22,6 +22,12 @@ def blurimageby(method, **kwargs):
     return futures
 
 
+def main():
+    blurimageby(boxblur, radius=3)
+
+if __name__ == "__main__":
+    main()
+
 
 
 

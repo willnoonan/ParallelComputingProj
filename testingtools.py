@@ -21,8 +21,7 @@ def blurimageby(method):
     new_img.save(os.path.join(image_path, f'{method.__name__}_pinkflower.png'))
     return futures
 
-v1 = blurimageby(simple_boxblur)["red"].result()
-v2 = blurimageby(simple_boxblur_V2)["red"].result()
+
 
 
 

@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def simple_boxblur(img_data):
     """Box blur algorithm with radius = 1."""
     img_data = np.array(img_data, dtype=int)
@@ -74,10 +75,10 @@ def simple_boxblur_V2(img_data):
             new_img_data.append(avg)
     return new_img_data
 
+
 def boxblur(img_data, radius=1):
     """
-    Second version of box blur algorithm with radius = 1.
-    Meant to be a stepping stone to a method with variable radius.
+    Box-blur method with variable radius.
     """
     if radius < 0:
         raise ValueError("radius must be >= 0")
